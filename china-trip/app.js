@@ -189,7 +189,11 @@ async function init() {
     'Yunnan': '25.0438~102.7100',
     'Travel Day': '22.3193~114.1694'
   };
-  const embedFromCity = (city) => `https://www.bing.com/maps/embed?h=280&w=500&cp=${cityCoords[city] || cityCoords['Hong Kong']}&lvl=12&typ=d&sty=r&src=SHELL&FORM=MBEDV8`;
+  const embedFromCity = (city) => {
+    const cp = cityCoords[city] || cityCoords['Hong Kong'];
+    const [lat, lng] = cp.split('~');
+    return `https://www.google.com/maps?q=${lat},${lng}&z=12&output=embed`;
+  };
 
   const cityDining = {
     'Hong Kong': [
@@ -277,16 +281,19 @@ async function init() {
       let text = s.plan;
       let itemUrl = '';
       let mapTarget = `${d.city} ${d.stayArea || ''}`;
+      let mapContext = '';
 
       if (!isTravelDay && s.type === 'activity' && s.time === '09:00' && dayPlan?.walk) {
         text = `Scenic walk / sightseeing: ${dayPlan.walk}`;
         mapTarget = `${dayPlan.walk}, ${baseCity}`;
+        mapContext = 'morning walk';
       }
 
       if (!isTravelDay && s.type === 'activity' && s.time === '14:30' && dayPlan?.attraction?.name) {
         text = `Featured attraction: ${dayPlan.attraction.name}${leaveHotel ? ` (leave stay area by ${leaveHotel})` : ''}`;
         itemUrl = dayPlan.attraction.url || '';
         mapTarget = `${dayPlan.attraction.name}, ${baseCity}`;
+        mapContext = 'main attraction';
       }
 
       if (!isTravelDay && s.type === 'meal') {
@@ -295,20 +302,30 @@ async function init() {
         if (pick) {
           text = `${s.time === '18:30' && dayPlan?.evening ? `Dinner + evening plan: ${dayPlan.evening}. ` : ''}Meal suggestion: ${pick.name}${s.time === '18:30' && leaveAttraction ? ` (leave attraction by ${leaveAttraction})` : ''}`;
           itemUrl = pick.url || '';
-          mapTarget = `${pick.name}, ${baseCity}`;
+          if (s.time < '11:00') {
+            mapTarget = `breakfast near ${d.stayArea || baseCity}, ${baseCity}`;
+            mapContext = 'breakfast area';
+          } else if (s.time < '16:00') {
+            mapTarget = `lunch near ${attractionName || baseCity}, ${baseCity}`;
+            mapContext = 'lunch area';
+          } else {
+            mapTarget = `${pick.name}, ${baseCity}`;
+            mapContext = dayPlan?.evening ? `dinner near ${dayPlan.evening}` : 'dinner area';
+          }
           mealIdx += 1;
         }
       }
 
       if (s.type === 'rest') {
         text = `Rest stop near suggested stay area: ${d.stayArea || baseCity}`;
-        mapTarget = `${d.stayArea || baseCity}`;
+        mapTarget = `hotel near ${d.stayArea || baseCity}`;
+        mapContext = 'rest stop';
       }
 
-      const mapQueryRow = encodeURIComponent(mapTarget);
-      const rowMapLink = `https://www.bing.com/maps/default.aspx?where1=${mapQueryRow}&lvl=12&style=r`;
-      const rowMapEmbed = embedFromCity(baseCity);
-      const rowMapEmbedAlt = `https://www.bing.com/maps/default.aspx?where1=${mapQueryRow}&lvl=12&style=r&FORM=MBEDLD`;
+      const mapQueryRow = encodeURIComponent(`${mapTarget} ${mapContext}`.trim());
+      const rowMapLink = `https://www.google.com/maps/search/?api=1&query=${mapQueryRow}`;
+      const rowMapEmbed = `https://www.google.com/maps?q=${mapQueryRow}&z=13&output=embed`;
+      const rowMapEmbedAlt = embedFromCity(baseCity);
       const linkHtml = itemUrl ? `<a href='${itemUrl}' target='_blank' rel='noreferrer'>Website</a>` : '';
       const mapToggleHtml = `<a href='${rowMapLink}' class='js-map-toggle' data-embed='${rowMapEmbed}' data-embed-alt='${rowMapEmbedAlt}' data-open-label='Map' data-close-label='Hide map' target='_blank' rel='noreferrer'>Map</a><div class='map-frame js-map-frame'></div>`;
 
@@ -330,9 +347,9 @@ async function init() {
       : '';
 
     const mapQuery = encodeURIComponent(`${attractionName || d.city}, ${baseCity || d.city}`);
-    const mapLink = `https://www.bing.com/maps/default.aspx?where1=${mapQuery}&lvl=12&style=r`;
-    const mapEmbed = embedFromCity(baseCity);
-    const mapEmbedAlt = `https://www.bing.com/maps/default.aspx?where1=${mapQuery}&lvl=12&style=r&FORM=MBEDLD`;
+    const mapLink = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
+    const mapEmbed = `https://www.google.com/maps?q=${mapQuery}&z=12&output=embed`;
+    const mapEmbedAlt = embedFromCity(baseCity);
 
     const mapHtml = `
       <div class='map-wrap'>
@@ -350,9 +367,9 @@ async function init() {
     days.appendChild(sec);
   });
 
-  const mountBingFrame = (container, primary, alt, href) => {
+  const mountMapFrame = (container, primary, alt, href) => {
     const token = Date.now();
-    container.innerHTML = `<iframe loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="${primary}${primary.includes('?') ? '&' : '?'}_t=${token}" allowfullscreen></iframe><div style="padding:8px 10px;font-size:12px;border-top:1px solid #dce3ef">If blank, trying alternate embed… <a href="${href}" target="_blank" rel="noreferrer">Open Bing Maps</a></div>`;
+    container.innerHTML = `<iframe loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="${primary}${primary.includes('?') ? '&' : '?'}_t=${token}" allowfullscreen></iframe><div style="padding:8px 10px;font-size:12px;border-top:1px solid #dce3ef">If blank, trying alternate embed… <a href="${href}" target="_blank" rel="noreferrer">Open map</a></div>`;
     const iframe = container.querySelector('iframe');
 
     const fallback = setTimeout(() => {
@@ -385,7 +402,7 @@ async function init() {
         link.textContent = openLabel;
       } else {
         frame.style.display = 'block';
-        mountBingFrame(frame, embed, embedAlt, href);
+        mountMapFrame(frame, embed, embedAlt, href);
         link.textContent = closeLabel;
       }
     });
