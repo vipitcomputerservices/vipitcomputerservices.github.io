@@ -369,7 +369,7 @@ async function init() {
 
   const mountMapFrame = (container, primary, alt, href) => {
     const token = Date.now();
-    container.innerHTML = `<iframe loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="${primary}${primary.includes('?') ? '&' : '?'}_t=${token}" allowfullscreen></iframe><div style="padding:8px 10px;font-size:12px;border-top:1px solid #dce3ef">If blank, trying alternate embed… <a href="${href}" target="_blank" rel="noreferrer">Open map</a></div>`;
+    container.innerHTML = `<iframe loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="${primary}${primary.includes('?') ? '&' : '?'}_t=${token}" allowfullscreen></iframe>`;
     const iframe = container.querySelector('iframe');
 
     const fallback = setTimeout(() => {
