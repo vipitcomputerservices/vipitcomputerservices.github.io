@@ -1,0 +1,45 @@
+# -*- coding: utf-8 -*-
+from datetime import date, timedelta
+from pathlib import Path
+import json
+
+root = Path('C:/Users/Cromos/.openclaw/workspace/projects/china-trip')
+root.mkdir(parents=True, exist_ok=True)
+start = date(2026,4,13); end = date(2026,5,14)
+
+def dates(a,b):
+    out=[]; d=a
+    while d<=b:
+        out.append(d); d += timedelta(days=1)
+    return out
+
+route=[(date(2026,4,13),date(2026,4,16),'Hong Kong'),(date(2026,4,17),date(2026,4,20),'Guangzhou'),(date(2026,4,21),date(2026,4,25),'Shanghai'),(date(2026,4,26),date(2026,5,1),'Beijing'),(date(2026,5,2),date(2026,5,4),"Xi'an"),(date(2026,5,5),date(2026,5,8),'Chengdu'),(date(2026,5,9),date(2026,5,11),'Guilin/Yangshuo'),(date(2026,5,12),date(2026,5,14),'Hong Kong (Departure Prep)')]
+
+def city_for(d):
+    for a,b,c in route:
+        if a<=d<=b: return c
+    return 'TBD'
+
+attr={'Hong Kong':{'name':'Victoria Peak','url':'https://www.thepeak.com.hk/en','img':'https://images.unsplash.com/photo-1506970845246-18f21d533b20?auto=format&fit=crop&w=1200&q=80'},'Guangzhou':{'name':'Canton Tower','url':'https://www.cantontower.com/en/','img':'https://images.unsplash.com/photo-1526483360412-f4dbaf036963?auto=format&fit=crop&w=1200&q=80'},'Shanghai':{'name':'The Bund','url':'https://www.meet-in-shanghai.net/travel-info/scenic-spots/the-bund/','img':'https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?auto=format&fit=crop&w=1200&q=80'},'Beijing':{'name':'Great Wall (Mutianyu)','url':'https://www.mutianyugreatwall.com/','img':'https://images.unsplash.com/photo-1508804185872-d7badad00f7d?auto=format&fit=crop&w=1200&q=80'},"Xi'an":{'name':'Terracotta Army','url':'http://www.bmy.com.cn/','img':'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=80'},'Chengdu':{'name':'Chengdu Panda Base','url':'http://www.panda.org.cn/english/','img':'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?auto=format&fit=crop&w=1200&q=80'},'Guilin/Yangshuo':{'name':'Li River Cruise','url':'https://www.travelchinaguide.com/attraction/guangxi/guilin/lijiang-river.htm','img':'https://images.unsplash.com/photo-1620632575791-a4ba8caebc2d?auto=format&fit=crop&w=1200&q=80'},'Hong Kong (Departure Prep)':{'name':'Tsim Sha Tsui Promenade','url':'https://www.discoverhongkong.com/eng/explore/great-outdoor/avenue-of-stars.html','img':'https://images.unsplash.com/photo-1518182170546-07661fd94144?auto=format&fit=crop&w=1200&q=80'}}
+budget={'Hong Kong':620,'Guangzhou':520,'Shanghai':650,'Beijing':640,"Xi'an":540,'Chengdu':560,'Guilin/Yangshuo':580,'Hong Kong (Departure Prep)':620}
+travel={date(2026,4,13),date(2026,4,17),date(2026,4,21),date(2026,4,26),date(2026,5,2),date(2026,5,5),date(2026,5,9),date(2026,5,12),date(2026,5,14)}
+
+it=[]
+for d in dates(start,end):
+    c=city_for(d); a=attr[c]; cost=budget.get(c,550)+(180 if d in travel else 0)
+    sched=[{'time':'07:30','plan':'Breakfast + get ready','type':'meal'},{'time':'09:00','plan':f'Morning activity in {c}','type':'activity'},{'time':'12:30','plan':'Lunch break','type':'meal'},{'time':'14:00','plan':f'Visit {a["name"]}','type':'activity'},{'time':'18:00','plan':'Dinner','type':'meal'},{'time':'20:00','plan':'Evening walk / rest / family time','type':'rest'}]
+    notes=''
+    if d==date(2026,4,13):
+        sched=[{'time':'04:30','plan':'Leave home for YYZ','type':'travel'},{'time':'07:00','plan':'UA565 YYZ to SFO departs','type':'travel'},{'time':'09:39','plan':'Arrive SFO (PST)','type':'travel'},{'time':'12:55','plan':'UA869 SFO to HKG departs','type':'travel'},{'time':'18:55 (+1)','plan':'Arrive Hong Kong (HKG)','type':'travel'},{'time':'21:00','plan':'Hotel check-in + light meal','type':'meal'}]
+        notes='Outbound flight details provided by Brian.'; cost += 1900
+    if d==date(2026,5,14):
+        sched=[{'time':'08:00','plan':'Breakfast + checkout prep','type':'meal'},{'time':'10:00','plan':'Transfer to airport','type':'travel'},{'time':'TBD','plan':'Return flight details pending attachment import','type':'travel'},{'time':'TBD','plan':'Arrive home','type':'travel'}]
+        notes='Return flight info placeholder. Update from attachment.'
+    it.append({'date':d.isoformat(),'weekday':d.strftime('%A'),'city':c,'attraction':a,'schedule':sched,'estimatedCostCAD':cost,'notes':notes})
+
+trip={'project':'China trip','range':{'start':start.isoformat(),'end':end.isoformat()},'attendees':[{'name':'Brian','age':43,'gender':'Male'},{'name':'Val','age':41,'gender':'Female'},{'name':'Harrison','age':10,'gender':'Male'}],'tickets':{'outbound':[{'flight':'UA565','from':'Toronto (YYZ)','to':'San Francisco (SFO)','depart':'2026-04-13 07:00 EST','arrive':'2026-04-13 09:39 PST'},{'flight':'UA869','from':'San Francisco (SFO)','to':'Hong Kong (HKG)','depart':'2026-04-13 12:55 PST','arrive':'2026-04-14 18:55 HKT'}],'return':[{'flight':'TBD','from':'TBD','to':'TBD','depart':'TBD','arrive':'TBD','note':'Populate from attached return details'}]},'itinerary':it}
+(root/'trip-data.json').write_text(json.dumps(trip,indent=2),encoding='utf-8')
+(root/'index.html').write_text("<!doctype html><html lang='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>China Trip Planner</title><link rel='stylesheet' href='styles.css'></head><body><header><h1>China Trip Planner</h1><p>April 13, 2026 to May 14, 2026 - Printer-friendly itinerary + budget tracker</p></header><section class='card'><h2>Attendees</h2><ul id='attendees'></ul></section><section class='card'><h2>Flight and Ticket Details</h2><h3>Outbound</h3><div id='outbound'></div><h3>Return</h3><div id='return'></div></section><section class='card totals'><h2>Estimated Cost Running Total</h2><p id='total-cost'></p></section><main id='days'></main><script src='app.js'></script></body></html>",encoding='utf-8')
+(root/'styles.css').write_text("*{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;margin:20px;color:#111;background:#fff}header{border-bottom:2px solid #222;padding-bottom:10px;margin-bottom:14px}h1{margin:0 0 4px}.card{border:1px solid #bbb;border-radius:8px;padding:12px;margin:10px 0;background:#fafafa}h2{margin:0 0 8px}h3{margin:8px 0 6px}#days{display:grid;gap:14px}.day{border:1px solid #999;border-radius:8px;padding:12px;break-inside:avoid;page-break-inside:avoid}.dayhead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.meta{font-size:13px;color:#333}.schedule{margin-top:8px;border-collapse:collapse;width:100%}.schedule th,.schedule td{border:1px solid #ddd;padding:6px 8px;text-align:left;font-size:13px}.attraction{display:grid;grid-template-columns:180px 1fr;gap:10px;align-items:start;margin-top:10px}.attraction img{width:180px;height:110px;object-fit:cover;border-radius:6px;border:1px solid #ccc}.cost{font-weight:700}.totals{background:#eef8ee;border-color:#72b772}@media print{body{margin:10mm}.card,.day{border-color:#777}a{color:#000;text-decoration:underline}}",encoding='utf-8')
+(root/'app.js').write_text("async function init(){const data=await fetch('trip-data.json').then(r=>r.json());const attendees=document.getElementById('attendees');data.attendees.forEach(a=>{const li=document.createElement('li');li.textContent=`${a.name} (${a.age}, ${a.gender})`;attendees.appendChild(li);});const outbound=document.getElementById('outbound');data.tickets.outbound.forEach(f=>{const p=document.createElement('p');p.textContent=`${f.flight}: ${f.from} -> ${f.to} | ${f.depart} -> ${f.arrive}`;outbound.appendChild(p);});const ret=document.getElementById('return');data.tickets.return.forEach(f=>{const p=document.createElement('p');p.textContent=`${f.flight}: ${f.from} -> ${f.to} | ${f.depart} -> ${f.arrive} ${f.note ? '| '+f.note : ''}`;ret.appendChild(p);});let running=0;const days=document.getElementById('days');data.itinerary.forEach((d,idx)=>{running+=d.estimatedCostCAD;const sec=document.createElement('section');sec.className='day';const rows=d.schedule.map(s=>`<tr><td>${s.time}</td><td>${s.plan}</td><td>${s.type}</td></tr>`).join('');sec.innerHTML=`<div class='dayhead'><div><h3>Day ${idx+1} - ${d.date} (${d.weekday})</h3><div class='meta'>City: <strong>${d.city}</strong></div></div><div class='cost'>Estimated daily cost: CAD $${d.estimatedCostCAD.toLocaleString()}</div></div><table class='schedule'><thead><tr><th style='width:120px'>Time</th><th>Plan</th><th style='width:120px'>Type</th></tr></thead><tbody>${rows}</tbody></table><div class='attraction'><img src='${d.attraction.img}' alt='${d.attraction.name}' /><div><p><strong>Major attraction:</strong> ${d.attraction.name}</p><p><a href='${d.attraction.url}' target='_blank' rel='noreferrer'>Official/reference link</a></p>${d.notes ? `<p><strong>Notes:</strong> ${d.notes}</p>` : ''}<p><strong>Running total after this day:</strong> CAD $${running.toLocaleString()}</p></div></div>`;days.appendChild(sec);});document.getElementById('total-cost').textContent=`Estimated total trip cost: CAD $${running.toLocaleString()} (draft estimate)`;}init();",encoding='utf-8')
+print('ok')

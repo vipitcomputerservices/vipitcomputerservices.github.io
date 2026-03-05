@@ -1,0 +1,67 @@
+*{box-sizing:border-box}
+:root{
+  --bg:#f4f7fb;
+  --card:#ffffff;
+  --ink:#18212f;
+  --muted:#5e6a7d;
+  --line:#dce3ef;
+  --accent:#2563eb;
+  --accent-soft:#dbeafe;
+  --ok:#0f766e;
+}
+body{font-family:Inter,Segoe UI,Arial,Helvetica,sans-serif;margin:0;padding:20px;color:var(--ink);background:var(--bg);line-height:1.45}
+.hero{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;background-image:linear-gradient(rgba(15,23,42,.55),rgba(15,23,42,.45)),url('https://images.unsplash.com/photo-1547981609-4b6bf67db8ea?auto=format&fit=crop&w=1800&q=80');background-size:cover;background-position:center;color:#fff;padding:18px;border-radius:14px;margin-bottom:14px;box-shadow:0 8px 30px rgba(15,23,42,.25)}
+.hero h1{margin:0 0 6px;font-size:28px}
+.hero p{margin:0;color:#dbeafe}
+.print-btn{background:#fff;color:#0f172a;border:none;border-radius:10px;padding:10px 14px;font-weight:700;cursor:pointer}
+.print-btn:hover{background:#eff6ff}
+.card{border:1px solid var(--line);border-radius:12px;padding:14px;margin:10px 0;background:var(--card);box-shadow:0 3px 12px rgba(15,23,42,.05)}
+h2{margin:0 0 8px;font-size:20px}
+h3{margin:10px 0 6px}
+#attendees{display:flex;gap:8px;flex-wrap:wrap;padding:0;margin:0;list-style:none}
+#attendees li{background:var(--accent-soft);color:#1e3a8a;padding:6px 10px;border-radius:999px;font-weight:600}
+.waypoints{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px}
+.waypoint{border:1px solid var(--line);border-radius:10px;padding:10px;background:#f8fafc}
+.waypoint .city{font-weight:700}
+.waypoint .spot{color:var(--muted);font-size:14px}
+.transfers{display:grid;gap:10px}
+.transfer{border:1px solid var(--line);border-radius:10px;padding:10px;background:#f8fafc}
+.transfer .route{font-weight:700}
+.transfer .decision{margin-top:6px;font-size:13px}
+#days{display:grid;gap:14px;margin-top:12px}
+.day{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--card);break-inside:avoid;page-break-inside:avoid;box-shadow:0 3px 12px rgba(15,23,42,.04)}
+.dayhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.meta{font-size:13px;color:var(--muted)}
+.schedule{margin-top:8px;border-collapse:collapse;width:100%}
+.schedule th,.schedule td{border:1px solid var(--line);padding:7px 8px;text-align:left;font-size:13px;vertical-align:top}
+.schedule th{background:#f8fafc}
+.schedule tr.row-meal td{background:#e8f7e8}
+.schedule tr.row-rest td{background:#e8f0ff}
+.schedule tr.row-activity td{background:#ffe9e9}
+.schedule tr.row-activity.has-bg td{background-image:linear-gradient(rgba(60,60,60,.45),rgba(60,60,60,.45)),var(--row-bg);background-size:cover;background-position:center;color:#fff}
+.schedule tr.row-activity.has-bg a{color:#fff;text-decoration:underline}
+.plan-links{margin-top:6px;display:flex;gap:8px;flex-wrap:wrap}
+.plan-links a{font-size:12px}
+.attraction{display:grid;grid-template-columns:180px 1fr;gap:10px;align-items:start;margin-top:10px}
+.attraction img{width:180px;height:110px;object-fit:cover;border-radius:8px;border:1px solid var(--line);background:#eef2ff}
+.cost{font-weight:800;color:var(--ok)}
+.timing{margin-top:8px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:#f8fafc}
+.timing p{margin:6px 0;font-size:13px}
+.map-wrap{margin-top:10px}
+.map-link{display:inline-block;font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;background:#eef2ff;padding:7px 10px;border-radius:8px}
+.map-link:hover{text-decoration:underline}
+.map-frame{display:none;margin-top:8px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#f8fafc}
+.map-frame iframe{width:100%;height:280px;border:0}
+.map-options{padding:10px;display:flex;gap:8px;flex-wrap:wrap}
+.map-options a{display:inline-block;padding:6px 10px;border-radius:8px;background:#eef2ff;text-decoration:none;font-size:12px;font-weight:700}
+.totals{background:#ecfdf5;border-color:#99f6e4}
+@media (max-width:700px){.attraction{grid-template-columns:1fr}.attraction img{width:100%;height:170px}}
+
+@media print{
+  body{background:#fff;margin:0;padding:10mm;color:#000}
+  .hero{background:#fff;color:#000;box-shadow:none;border:1px solid #777;padding:10px}
+  .hero p{color:#000}
+  .print-btn{display:none}
+  .card,.day{box-shadow:none;border-color:#777}
+  a{color:#000;text-decoration:underline}
+}

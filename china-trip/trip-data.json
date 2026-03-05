@@ -1,0 +1,1555 @@
+{
+  "project": "China trip",
+  "range": {
+    "start": "2026-04-13",
+    "end": "2026-05-14"
+  },
+  "attendees": [
+    {
+      "name": "Brian",
+      "age": 43
+    },
+    {
+      "name": "Val",
+      "age": 41
+    },
+    {
+      "name": "Harrison",
+      "age": 10
+    }
+  ],
+  "tickets": {
+    "outbound": [
+      {
+        "flight": "UA565",
+        "from": "Toronto (YYZ)",
+        "to": "San Francisco (SFO)",
+        "depart": "2026-04-13 07:00 EST",
+        "arrive": "2026-04-13 09:39 PST"
+      },
+      {
+        "flight": "UA869",
+        "from": "San Francisco (SFO)",
+        "to": "Hong Kong (HKG)",
+        "depart": "2026-04-13 12:55 PST",
+        "arrive": "2026-04-14 18:55 HKT"
+      }
+    ],
+    "return": [
+      {
+        "flight": "UA878",
+        "from": "Hong Kong (HKG)",
+        "to": "San Francisco (SFO)",
+        "depart": "2026-05-14 22:30 HKT",
+        "arrive": "2026-05-14 20:05 PST"
+      },
+      {
+        "flight": "UA436",
+        "from": "San Francisco (SFO)",
+        "to": "Toronto (YYZ)",
+        "depart": "2026-05-14 23:00 PST",
+        "arrive": "2026-05-15 07:00 EST"
+      }
+    ],
+    "confirmationNumber": "NRPL6D",
+    "traveler": "MILNE/BRIAN",
+    "eTicketNumber": "0162341159229",
+    "seats": {
+      "YYZ-SFO": "30B",
+      "SFO-HKG": "43B",
+      "HKG-SFO": "43K",
+      "SFO-YYZ": "31B"
+    },
+    "purchase": {
+      "date": "2025-10-18",
+      "method": "MasterCard ending in 3252",
+      "totalPerPassengerCAD": 1041.23,
+      "passengerCount": 3,
+      "estimatedFamilyFlightTotalCAD": 3123.69
+    }
+  },
+  "itinerary": [
+    {
+      "date": "2026-04-13",
+      "weekday": "Monday",
+      "city": "Hong Kong",
+      "stayArea": "Tsim Sha Tsui or Sheung Wan (walkable, MTR access)",
+      "attraction": {
+        "name": "Victoria Peak",
+        "url": "https://www.thepeak.com.hk/en",
+        "img": "https://images.unsplash.com/photo-1506970845246-18f21d533b20?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "04:30",
+          "plan": "Leave home for YYZ",
+          "type": "travel"
+        },
+        {
+          "time": "07:00",
+          "plan": "UA565 YYZ -> SFO departs",
+          "type": "travel"
+        },
+        {
+          "time": "09:39",
+          "plan": "Arrive SFO (PST)",
+          "type": "travel"
+        },
+        {
+          "time": "12:55",
+          "plan": "UA869 SFO -> HKG departs",
+          "type": "travel"
+        },
+        {
+          "time": "18:55 (+1)",
+          "plan": "Arrive Hong Kong (HKG)",
+          "type": "travel"
+        },
+        {
+          "time": "21:00",
+          "plan": "Hotel/Airbnb check-in + light meal",
+          "type": "meal"
+        }
+      ],
+      "estimatedCostCAD": 2520,
+      "notes": "Inbound long-haul day."
+    },
+    {
+      "date": "2026-04-14",
+      "weekday": "Tuesday",
+      "city": "Hong Kong",
+      "stayArea": "Tsim Sha Tsui or Sheung Wan (walkable, MTR access)",
+      "attraction": {
+        "name": "Victoria Peak",
+        "url": "https://www.thepeak.com.hk/en",
+        "img": "https://images.unsplash.com/photo-1506970845246-18f21d533b20?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Hong Kong",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Victoria Peak",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 620,
+      "notes": ""
+    },
+    {
+      "date": "2026-04-15",
+      "weekday": "Wednesday",
+      "city": "Hong Kong",
+      "stayArea": "Tsim Sha Tsui or Sheung Wan (walkable, MTR access)",
+      "attraction": {
+        "name": "Victoria Peak",
+        "url": "https://www.thepeak.com.hk/en",
+        "img": "https://images.unsplash.com/photo-1506970845246-18f21d533b20?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Hong Kong",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Victoria Peak",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 620,
+      "notes": ""
+    },
+    {
+      "date": "2026-04-16",
+      "weekday": "Thursday",
+      "city": "Hong Kong",
+      "stayArea": "Tsim Sha Tsui or Sheung Wan (walkable, MTR access)",
+      "attraction": {
+        "name": "Victoria Peak",
+        "url": "https://www.thepeak.com.hk/en",
+        "img": "https://images.unsplash.com/photo-1506970845246-18f21d533b20?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Hong Kong",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Victoria Peak",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 620,
+      "notes": ""
+    },
+    {
+      "date": "2026-04-17",
+      "weekday": "Friday",
+      "city": "Shenzhen",
+      "stayArea": "Futian District near Civic Center / Coco Park",
+      "attraction": {
+        "name": "Ping An Finance Center",
+        "url": "https://www.pafcskymall.cn/en/",
+        "img": "https://images.unsplash.com/photo-1579273166652-ee4187f3fcb5?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "06:30",
+          "plan": "Travel day checkout/transfer buffer",
+          "type": "travel"
+        },
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Shenzhen",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Ping An Finance Center",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 680,
+      "notes": "Bullet train: Hong Kong West Kowloon -> Shenzhen Futian (~15-20 min)"
+    },
+    {
+      "date": "2026-04-18",
+      "weekday": "Saturday",
+      "city": "Shenzhen",
+      "stayArea": "Futian District near Civic Center / Coco Park",
+      "attraction": {
+        "name": "Ping An Finance Center",
+        "url": "https://www.pafcskymall.cn/en/",
+        "img": "https://images.unsplash.com/photo-1579273166652-ee4187f3fcb5?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Shenzhen",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Ping An Finance Center",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 500,
+      "notes": ""
+    },
+    {
+      "date": "2026-04-19",
+      "weekday": "Sunday",
+      "city": "Shenzhen",
+      "stayArea": "Futian District near Civic Center / Coco Park",
+      "attraction": {
+        "name": "Ping An Finance Center",
+        "url": "https://www.pafcskymall.cn/en/",
+        "img": "https://images.unsplash.com/photo-1579273166652-ee4187f3fcb5?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Shenzhen",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Ping An Finance Center",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 500,
+      "notes": ""
+    },
+    {
+      "date": "2026-04-20",
+      "weekday": "Monday",
+      "city": "Xi'an",
+      "stayArea": "Yongning Gate / Bell Tower area inside city wall",
+      "attraction": {
+        "name": "Terracotta Army",
+        "url": "http://www.bmy.com.cn/",
+        "img": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "06:30",
+          "plan": "Travel day checkout/transfer buffer",
+          "type": "travel"
+        },
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Xi'an",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Terracotta Army",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 740,
+      "notes": "Recommended flight: Shenzhen -> Xi'an (faster with child; HSR backup ~9h)"
+    },
+    {
+      "date": "2026-04-21",
+      "weekday": "Tuesday",
+      "city": "Xi'an",
+      "stayArea": "Yongning Gate / Bell Tower area inside city wall",
+      "attraction": {
+        "name": "Terracotta Army",
+        "url": "http://www.bmy.com.cn/",
+        "img": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Xi'an",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Terracotta Army",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 560,
+      "notes": ""
+    },
+    {
+      "date": "2026-04-22",
+      "weekday": "Wednesday",
+      "city": "Xi'an",
+      "stayArea": "Yongning Gate / Bell Tower area inside city wall",
+      "attraction": {
+        "name": "Terracotta Army",
+        "url": "http://www.bmy.com.cn/",
+        "img": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Xi'an",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Terracotta Army",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 560,
+      "notes": ""
+    },
+    {
+      "date": "2026-04-23",
+      "weekday": "Thursday",
+      "city": "Xi'an",
+      "stayArea": "Yongning Gate / Bell Tower area inside city wall",
+      "attraction": {
+        "name": "Terracotta Army",
+        "url": "http://www.bmy.com.cn/",
+        "img": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Xi'an",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Terracotta Army",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 560,
+      "notes": ""
+    },
+    {
+      "date": "2026-04-24",
+      "weekday": "Friday",
+      "city": "Chengdu",
+      "stayArea": "Chunxi Road / Taikoo Li or Kuanzhai Alley area",
+      "attraction": {
+        "name": "Chengdu Panda Base",
+        "url": "http://www.panda.org.cn/english/",
+        "img": "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "06:30",
+          "plan": "Travel day checkout/transfer buffer",
+          "type": "travel"
+        },
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Chengdu",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Chengdu Panda Base",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 740,
+      "notes": "Bullet train: Xi'an North -> Chengdu East (~3.5-4.5h)"
+    },
+    {
+      "date": "2026-04-25",
+      "weekday": "Saturday",
+      "city": "Chengdu",
+      "stayArea": "Chunxi Road / Taikoo Li or Kuanzhai Alley area",
+      "attraction": {
+        "name": "Chengdu Panda Base",
+        "url": "http://www.panda.org.cn/english/",
+        "img": "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Chengdu",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Chengdu Panda Base",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 560,
+      "notes": ""
+    },
+    {
+      "date": "2026-04-26",
+      "weekday": "Sunday",
+      "city": "Chengdu",
+      "stayArea": "Chunxi Road / Taikoo Li or Kuanzhai Alley area",
+      "attraction": {
+        "name": "Chengdu Panda Base",
+        "url": "http://www.panda.org.cn/english/",
+        "img": "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Chengdu",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Chengdu Panda Base",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 560,
+      "notes": ""
+    },
+    {
+      "date": "2026-04-27",
+      "weekday": "Monday",
+      "city": "Chongqing",
+      "stayArea": "Jiefangbei / Yuzhong Peninsula near Line 1/2",
+      "attraction": {
+        "name": "Hongya Cave",
+        "url": "https://www.travelchinaguide.com/cityguides/chongqing/hongyadong.htm",
+        "img": "https://images.unsplash.com/photo-1602491674275-6a4b0cf2f40a?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "06:30",
+          "plan": "Travel day checkout/transfer buffer",
+          "type": "travel"
+        },
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Chongqing",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Hongya Cave",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 720,
+      "notes": "Bullet train: Chengdu East -> Chongqing North (~1.5-2h)"
+    },
+    {
+      "date": "2026-04-28",
+      "weekday": "Tuesday",
+      "city": "Chongqing",
+      "stayArea": "Jiefangbei / Yuzhong Peninsula near Line 1/2",
+      "attraction": {
+        "name": "Hongya Cave",
+        "url": "https://www.travelchinaguide.com/cityguides/chongqing/hongyadong.htm",
+        "img": "https://images.unsplash.com/photo-1602491674275-6a4b0cf2f40a?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Chongqing",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Hongya Cave",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 540,
+      "notes": ""
+    },
+    {
+      "date": "2026-04-29",
+      "weekday": "Wednesday",
+      "city": "Chongqing",
+      "stayArea": "Jiefangbei / Yuzhong Peninsula near Line 1/2",
+      "attraction": {
+        "name": "Hongya Cave",
+        "url": "https://www.travelchinaguide.com/cityguides/chongqing/hongyadong.htm",
+        "img": "https://images.unsplash.com/photo-1602491674275-6a4b0cf2f40a?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Chongqing",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Hongya Cave",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 540,
+      "notes": ""
+    },
+    {
+      "date": "2026-04-30",
+      "weekday": "Thursday",
+      "city": "Yunnan",
+      "stayArea": "Split stay: Kunming (2n), Dali Ancient Town (3n), Lijiang Old Town (3n)",
+      "attraction": {
+        "name": "Stone Forest (Kunming)",
+        "url": "https://www.travelchinaguide.com/attraction/yunnan/kunming/stoneforest/",
+        "img": "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "06:30",
+          "plan": "Travel day checkout/transfer buffer",
+          "type": "travel"
+        },
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Yunnan",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Stone Forest (Kunming)",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 770,
+      "notes": "Bullet train: Chongqing West -> Kunming South (~5-6h)"
+    },
+    {
+      "date": "2026-05-01",
+      "weekday": "Friday",
+      "city": "Yunnan",
+      "stayArea": "Split stay: Kunming (2n), Dali Ancient Town (3n), Lijiang Old Town (3n)",
+      "attraction": {
+        "name": "Stone Forest (Kunming)",
+        "url": "https://www.travelchinaguide.com/attraction/yunnan/kunming/stoneforest/",
+        "img": "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Yunnan",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Stone Forest (Kunming)",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 590,
+      "notes": ""
+    },
+    {
+      "date": "2026-05-02",
+      "weekday": "Saturday",
+      "city": "Yunnan",
+      "stayArea": "Split stay: Kunming (2n), Dali Ancient Town (3n), Lijiang Old Town (3n)",
+      "attraction": {
+        "name": "Stone Forest (Kunming)",
+        "url": "https://www.travelchinaguide.com/attraction/yunnan/kunming/stoneforest/",
+        "img": "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "06:30",
+          "plan": "Travel day checkout/transfer buffer",
+          "type": "travel"
+        },
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Yunnan",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Stone Forest (Kunming)",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 770,
+      "notes": "Bullet train: Kunming -> Dali (~2h)"
+    },
+    {
+      "date": "2026-05-03",
+      "weekday": "Sunday",
+      "city": "Yunnan",
+      "stayArea": "Split stay: Kunming (2n), Dali Ancient Town (3n), Lijiang Old Town (3n)",
+      "attraction": {
+        "name": "Stone Forest (Kunming)",
+        "url": "https://www.travelchinaguide.com/attraction/yunnan/kunming/stoneforest/",
+        "img": "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Yunnan",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Stone Forest (Kunming)",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 590,
+      "notes": ""
+    },
+    {
+      "date": "2026-05-04",
+      "weekday": "Monday",
+      "city": "Yunnan",
+      "stayArea": "Split stay: Kunming (2n), Dali Ancient Town (3n), Lijiang Old Town (3n)",
+      "attraction": {
+        "name": "Stone Forest (Kunming)",
+        "url": "https://www.travelchinaguide.com/attraction/yunnan/kunming/stoneforest/",
+        "img": "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Yunnan",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Stone Forest (Kunming)",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 590,
+      "notes": ""
+    },
+    {
+      "date": "2026-05-05",
+      "weekday": "Tuesday",
+      "city": "Yunnan",
+      "stayArea": "Split stay: Kunming (2n), Dali Ancient Town (3n), Lijiang Old Town (3n)",
+      "attraction": {
+        "name": "Stone Forest (Kunming)",
+        "url": "https://www.travelchinaguide.com/attraction/yunnan/kunming/stoneforest/",
+        "img": "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "06:30",
+          "plan": "Travel day checkout/transfer buffer",
+          "type": "travel"
+        },
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Yunnan",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Stone Forest (Kunming)",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 770,
+      "notes": "Bullet train: Dali -> Lijiang (~1.5h)"
+    },
+    {
+      "date": "2026-05-06",
+      "weekday": "Wednesday",
+      "city": "Yunnan",
+      "stayArea": "Split stay: Kunming (2n), Dali Ancient Town (3n), Lijiang Old Town (3n)",
+      "attraction": {
+        "name": "Stone Forest (Kunming)",
+        "url": "https://www.travelchinaguide.com/attraction/yunnan/kunming/stoneforest/",
+        "img": "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Yunnan",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Stone Forest (Kunming)",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 590,
+      "notes": ""
+    },
+    {
+      "date": "2026-05-07",
+      "weekday": "Thursday",
+      "city": "Yunnan",
+      "stayArea": "Split stay: Kunming (2n), Dali Ancient Town (3n), Lijiang Old Town (3n)",
+      "attraction": {
+        "name": "Stone Forest (Kunming)",
+        "url": "https://www.travelchinaguide.com/attraction/yunnan/kunming/stoneforest/",
+        "img": "https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Yunnan",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Stone Forest (Kunming)",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 590,
+      "notes": ""
+    },
+    {
+      "date": "2026-05-08",
+      "weekday": "Friday",
+      "city": "Hong Kong (Departure Prep)",
+      "stayArea": "Tsim Sha Tsui near Airport Express / Kowloon station access",
+      "attraction": {
+        "name": "Avenue of Stars",
+        "url": "https://www.discoverhongkong.com/eng/explore/great-outdoor/avenue-of-stars.html",
+        "img": "https://images.unsplash.com/photo-1518182170546-07661fd94144?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "06:30",
+          "plan": "Travel day checkout/transfer buffer",
+          "type": "travel"
+        },
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Hong Kong (Departure Prep)",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Avenue of Stars",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 800,
+      "notes": "Recommended flight: Lijiang (or Kunming) -> Hong Kong"
+    },
+    {
+      "date": "2026-05-09",
+      "weekday": "Saturday",
+      "city": "Hong Kong (Departure Prep)",
+      "stayArea": "Tsim Sha Tsui near Airport Express / Kowloon station access",
+      "attraction": {
+        "name": "Avenue of Stars",
+        "url": "https://www.discoverhongkong.com/eng/explore/great-outdoor/avenue-of-stars.html",
+        "img": "https://images.unsplash.com/photo-1518182170546-07661fd94144?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Hong Kong (Departure Prep)",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Avenue of Stars",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 620,
+      "notes": ""
+    },
+    {
+      "date": "2026-05-10",
+      "weekday": "Sunday",
+      "city": "Hong Kong (Departure Prep)",
+      "stayArea": "Tsim Sha Tsui near Airport Express / Kowloon station access",
+      "attraction": {
+        "name": "Avenue of Stars",
+        "url": "https://www.discoverhongkong.com/eng/explore/great-outdoor/avenue-of-stars.html",
+        "img": "https://images.unsplash.com/photo-1518182170546-07661fd94144?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Hong Kong (Departure Prep)",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Avenue of Stars",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 620,
+      "notes": ""
+    },
+    {
+      "date": "2026-05-11",
+      "weekday": "Monday",
+      "city": "Hong Kong (Departure Prep)",
+      "stayArea": "Tsim Sha Tsui near Airport Express / Kowloon station access",
+      "attraction": {
+        "name": "Avenue of Stars",
+        "url": "https://www.discoverhongkong.com/eng/explore/great-outdoor/avenue-of-stars.html",
+        "img": "https://images.unsplash.com/photo-1518182170546-07661fd94144?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Hong Kong (Departure Prep)",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Avenue of Stars",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 620,
+      "notes": ""
+    },
+    {
+      "date": "2026-05-12",
+      "weekday": "Tuesday",
+      "city": "Hong Kong (Departure Prep)",
+      "stayArea": "Tsim Sha Tsui near Airport Express / Kowloon station access",
+      "attraction": {
+        "name": "Avenue of Stars",
+        "url": "https://www.discoverhongkong.com/eng/explore/great-outdoor/avenue-of-stars.html",
+        "img": "https://images.unsplash.com/photo-1518182170546-07661fd94144?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Hong Kong (Departure Prep)",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Avenue of Stars",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 620,
+      "notes": ""
+    },
+    {
+      "date": "2026-05-13",
+      "weekday": "Wednesday",
+      "city": "Hong Kong (Departure Prep)",
+      "stayArea": "Tsim Sha Tsui near Airport Express / Kowloon station access",
+      "attraction": {
+        "name": "Avenue of Stars",
+        "url": "https://www.discoverhongkong.com/eng/explore/great-outdoor/avenue-of-stars.html",
+        "img": "https://images.unsplash.com/photo-1518182170546-07661fd94144?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "07:30",
+          "plan": "Breakfast near Airbnb + depart for morning site",
+          "type": "meal"
+        },
+        {
+          "time": "09:00",
+          "plan": "Explore district highlights in Hong Kong (Departure Prep)",
+          "type": "activity"
+        },
+        {
+          "time": "12:30",
+          "plan": "Lunch (local restaurant, family break)",
+          "type": "meal"
+        },
+        {
+          "time": "14:30",
+          "plan": "Major attraction: Avenue of Stars",
+          "type": "activity"
+        },
+        {
+          "time": "18:30",
+          "plan": "Dinner + evening walk",
+          "type": "meal"
+        },
+        {
+          "time": "20:30",
+          "plan": "Rest / prep for next day",
+          "type": "rest"
+        }
+      ],
+      "estimatedCostCAD": 620,
+      "notes": ""
+    },
+    {
+      "date": "2026-05-14",
+      "weekday": "Thursday",
+      "city": "Hong Kong (Departure Prep)",
+      "stayArea": "Tsim Sha Tsui near Airport Express / Kowloon station access",
+      "attraction": {
+        "name": "Avenue of Stars",
+        "url": "https://www.discoverhongkong.com/eng/explore/great-outdoor/avenue-of-stars.html",
+        "img": "https://images.unsplash.com/photo-1518182170546-07661fd94144?auto=format&fit=crop&w=1200&q=80"
+      },
+      "schedule": [
+        {
+          "time": "08:00",
+          "plan": "Breakfast + final packing",
+          "type": "meal"
+        },
+        {
+          "time": "10:30",
+          "plan": "Checkout and airport transfer buffer",
+          "type": "travel"
+        },
+        {
+          "time": "22:30",
+          "plan": "UA878 HKG -> SFO departs",
+          "type": "travel"
+        },
+        {
+          "time": "20:05 (same day PST)",
+          "plan": "Arrive SFO and transfer terminal",
+          "type": "travel"
+        },
+        {
+          "time": "23:00",
+          "plan": "UA436 SFO -> YYZ departs",
+          "type": "travel"
+        }
+      ],
+      "estimatedCostCAD": 1400,
+      "notes": "Return travel day. Toronto arrival: May 15, 07:00 EST."
+    }
+  ],
+  "routeSummary": {
+    "routingLogic": "Mostly bullet train between nearby cities; flights only where rail is inefficient for family pacing.",
+    "minimums": {
+      "yunnanDays": 8,
+      "xianDays": 4
+    }
+  }
+}

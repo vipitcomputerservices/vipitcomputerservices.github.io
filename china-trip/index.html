@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>China Trip Planner</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <h1>China Trip Planner</h1>
+      <p>April 13, 2026 to May 14, 2026 · itinerary + budget tracker</p>
+    </div>
+    <button id="print-btn" class="print-btn" type="button">🖨️ Print Itinerary</button>
+  </header>
+
+  <section class="card">
+    <h2>Attendees</h2>
+    <ul id="attendees"></ul>
+  </section>
+
+  <section class="card">
+    <h2>Flight and Ticket Details</h2>
+    <h3>Outbound</h3>
+    <div id="outbound"></div>
+    <h3>Return</h3>
+    <div id="return"></div>
+  </section>
+
+  <section class="card">
+    <h2>Along-the-way ideas</h2>
+    <div id="waypoints" class="waypoints"></div>
+  </section>
+
+  <section class="card">
+    <h2>Intercity Transfer Optimization</h2>
+    <div id="transfers" class="transfers"></div>
+  </section>
+
+  <main id="days"></main>
+
+  <section class="card totals">
+    <h2>Estimated Total Cost</h2>
+    <p id="total-cost"></p>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>
