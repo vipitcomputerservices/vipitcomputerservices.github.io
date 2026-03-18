@@ -55,10 +55,22 @@ header {
 .hero p { color: var(--muted); font-size: 1.05rem; }
 .kpis { display: flex; gap: 12px; margin-top: 20px; flex-wrap: wrap; }
 .kpi { background: #eef4ff; color: #1f2937; padding: 10px 14px; border-radius: 999px; font-weight: 600; }
-.video-placeholder {
-  border-radius: var(--radius); border: 2px dashed #93c5fd; height: 100%;
-  min-height: 290px; display: grid; place-items: center; color: var(--muted);
+.ai-graphic-card {
+  border-radius: var(--radius);
+  height: 100%;
+  min-height: 290px;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  text-align: center;
   background: radial-gradient(circle at top right, #dbeafe, #f8fbff 55%);
+}
+
+.ai-graphic {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  border-radius: 12px;
 }
 
 section { padding: 24px 0 42px; }
