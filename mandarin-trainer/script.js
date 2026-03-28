@@ -273,154 +273,55 @@ function makeSentenceImageSvgDataUri(emoji, english) {
   return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 }
 
-const KUMON_SUBJECT_SETS = [
-  [
-    { zh: '狗', py: 'gǒu', en: 'dog', emoji: '🐶' },
-    { zh: '鸡', py: 'jī', en: 'chicken', emoji: '🐔' },
-    { zh: '猫', py: 'māo', en: 'cat', emoji: '🐱' }
-  ],
-  [
-    { zh: '男孩', py: 'nán hái', en: 'boy', emoji: '👦' },
-    { zh: '女孩', py: 'nǚ hái', en: 'girl', emoji: '👧' },
-    { zh: '老师', py: 'lǎo shī', en: 'teacher', emoji: '👩‍🏫' }
-  ],
-  [
-    { zh: '妈妈', py: 'mā ma', en: 'mother', emoji: '👩' },
-    { zh: '爸爸', py: 'bà ba', en: 'father', emoji: '👨' },
-    { zh: '宝宝', py: 'bǎo bǎo', en: 'baby', emoji: '👶' }
-  ],
-  [
-    { zh: '学生', py: 'xué sheng', en: 'student', emoji: '🧑‍🎓' },
-    { zh: '朋友', py: 'péng you', en: 'friend', emoji: '🧑‍🤝‍🧑' },
-    { zh: '医生', py: 'yī shēng', en: 'doctor', emoji: '🩺' }
-  ],
-  [
-    { zh: '警察', py: 'jǐng chá', en: 'police officer', emoji: '👮' },
-    { zh: '厨师', py: 'chú shī', en: 'chef', emoji: '👨‍🍳' },
-    { zh: '司机', py: 'sī jī', en: 'driver', emoji: '🚕' }
-  ]
-];
-
 const KUMON_PATTERNS = [
-  {
-    englishTail: 'crossed the road.',
-    sceneEmoji: '🛣️',
-    tailGloss: [
-      { zh: '过', py: 'guò', en: 'crossed' },
-      { zh: '马路', py: 'mǎ lù', en: 'road' }
-    ]
-  },
-  {
-    englishTail: 'is on the chair.',
-    sceneEmoji: '🪑',
-    tailGloss: [
-      { zh: '在', py: 'zài', en: 'is/at' },
-      { zh: '椅子', py: 'yǐ zi', en: 'chair' },
-      { zh: '上', py: 'shàng', en: 'on top of' }
-    ]
-  },
-  {
-    englishTail: 'is under the table.',
-    sceneEmoji: '🧾',
-    tailGloss: [
-      { zh: '在', py: 'zài', en: 'is/at' },
-      { zh: '桌子', py: 'zhuō zi', en: 'table' },
-      { zh: '下', py: 'xià', en: 'under' }
-    ]
-  },
-  {
-    englishTail: 'is in the park.',
-    sceneEmoji: '🌳',
-    tailGloss: [
-      { zh: '在', py: 'zài', en: 'is/at' },
-      { zh: '公园', py: 'gōng yuán', en: 'park' },
-      { zh: '里', py: 'lǐ', en: 'inside' }
-    ]
-  },
-  {
-    englishTail: 'is at school.',
-    sceneEmoji: '🏫',
-    tailGloss: [
-      { zh: '在', py: 'zài', en: 'is/at' },
-      { zh: '学校', py: 'xué xiào', en: 'school' },
-      { zh: '里', py: 'lǐ', en: 'inside' }
-    ]
-  },
-  {
-    englishTail: 'opens the door.',
-    sceneEmoji: '🚪',
-    tailGloss: [
-      { zh: '开', py: 'kāi', en: 'opens' },
-      { zh: '门', py: 'mén', en: 'door' }
-    ]
-  },
-  {
-    englishTail: 'closes the window.',
-    sceneEmoji: '🪟',
-    tailGloss: [
-      { zh: '关', py: 'guān', en: 'closes' },
-      { zh: '窗户', py: 'chuāng hu', en: 'window' }
-    ]
-  },
-  {
-    englishTail: 'drinks water.',
-    sceneEmoji: '💧',
-    tailGloss: [
-      { zh: '喝', py: 'hē', en: 'drinks' },
-      { zh: '水', py: 'shuǐ', en: 'water' }
-    ]
-  },
-  {
-    englishTail: 'eats rice.',
-    sceneEmoji: '🍚',
-    tailGloss: [
-      { zh: '吃', py: 'chī', en: 'eats' },
-      { zh: '米饭', py: 'mǐ fàn', en: 'rice' }
-    ]
-  },
-  {
-    englishTail: 'reads a book.',
-    sceneEmoji: '📘',
-    tailGloss: [
-      { zh: '看', py: 'kàn', en: 'reads' },
-      { zh: '书', py: 'shū', en: 'book' }
-    ]
-  }
+  { connectorZh: '和', connectorPy: 'hé', connectorEn: 'and', sentenceTailZh: '在一起。', sentenceTailPy: 'zài yì qǐ.', sentenceTailEn: 'together.', sceneEmoji: '🤝' },
+  { connectorZh: '在', connectorPy: 'zài', connectorEn: 'at', sentenceTailZh: '学习。', sentenceTailPy: 'xué xí.', sentenceTailEn: 'study.', sceneEmoji: '📚' },
+  { connectorZh: '和', connectorPy: 'hé', connectorEn: 'with', sentenceTailZh: '练习。', sentenceTailPy: 'liàn xí.', sentenceTailEn: 'practice.', sceneEmoji: '📝' },
+  { connectorZh: '在', connectorPy: 'zài', connectorEn: 'in', sentenceTailZh: '使用。', sentenceTailPy: 'shǐ yòng.', sentenceTailEn: 'use.', sceneEmoji: '🧩' },
+  { connectorZh: '和', connectorPy: 'hé', connectorEn: 'with', sentenceTailZh: '复习。', sentenceTailPy: 'fù xí.', sentenceTailEn: 'review.', sceneEmoji: '🔁' }
 ];
 
-function buildKumonSlide(subjectSet, pattern) {
-  return subjectSet.map((subject) => {
-    const gloss = [
-      { zh: subject.zh, py: subject.py, en: subject.en },
-      ...pattern.tailGloss
-    ];
-
-    return {
-      english: `The ${subject.en} ${pattern.englishTail}`,
-      chinese: `${gloss.map((g) => g.zh).join('')}。`,
-      pinyin: `${gloss.map((g) => g.py).join(' ')}.`,
-      emoji: `${subject.emoji}${pattern.sceneEmoji}`,
-      gloss
-    };
-  });
+function getStrictLevelWords(level) {
+  const bank = LEVEL_WORD_BANKS[level] || [];
+  if (!bank.length) return getLevelWords(level).slice(0, 12);
+  return bank.map(([en, zh, py]) => ({ en, zh, py, ttsText: zh }));
 }
 
-const KUMON_SLIDES = (() => {
-  const slides = [];
-  KUMON_PATTERNS.forEach((pattern) => {
-    KUMON_SUBJECT_SETS.forEach((subjectSet) => {
-      slides.push(buildKumonSlide(subjectSet, pattern));
-    });
-  });
-  return slides;
-})();
+function buildKumonSentence(wordA, wordB, pattern) {
+  const emojiA = emojiMap[wordA.en] || '🀄';
+  const emojiB = emojiMap[wordB.en] || '🀄';
 
-function getKumonTriplet(slideIndex) {
-  const selected = KUMON_SLIDES[slideIndex % KUMON_SLIDES.length];
-  return selected.map((s) => {
-    const emojiImage = makeSentenceImageSvgDataUri(s.emoji, s.english);
+  const gloss = [
+    { zh: wordA.zh, py: wordA.py, en: wordA.en },
+    { zh: pattern.connectorZh, py: pattern.connectorPy, en: pattern.connectorEn },
+    { zh: wordB.zh, py: wordB.py, en: wordB.en }
+  ];
+
+  const chinese = `${wordA.zh}${pattern.connectorZh}${wordB.zh}${pattern.sentenceTailZh}`;
+  const pinyin = `${wordA.py} ${pattern.connectorPy} ${wordB.py} ${pattern.sentenceTailPy}`;
+  const english = `${wordA.en} ${pattern.connectorEn} ${wordB.en} ${pattern.sentenceTailEn}`;
+
+  return {
+    english,
+    chinese,
+    pinyin,
+    emoji: `${emojiA}${emojiB}${pattern.sceneEmoji}`,
+    gloss
+  };
+}
+
+function getKumonTriplet(slideIndex, level) {
+  const levelWords = getStrictLevelWords(level);
+  const pattern = KUMON_PATTERNS[slideIndex % KUMON_PATTERNS.length];
+
+  return Array.from({ length: 3 }, (_, idx) => {
+    const a = levelWords[(slideIndex * 3 + idx) % levelWords.length];
+    const b = levelWords[(slideIndex * 3 + idx + 1) % levelWords.length];
+    const sentence = buildKumonSentence(a, b, pattern);
+    const emojiImage = makeSentenceImageSvgDataUri(sentence.emoji, sentence.english);
+
     return {
-      ...s,
+      ...sentence,
       image: emojiImage,
       fallbackImage: emojiImage
     };
@@ -528,7 +429,7 @@ function renderFlash(word) {
 }
 
 function renderKumon() {
-  const triplet = getKumonTriplet(state.slideIndex);
+  const triplet = getKumonTriplet(state.slideIndex, state.level);
   slideHost.innerHTML = `
     <div class="kumon-card">
       <h3>Kumon Repetition · Beginner Sentences</h3>
