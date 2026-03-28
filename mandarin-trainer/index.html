@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mandarin Trainer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="levels-panel">
+      <h2>Levels</h2>
+      <div id="levels" class="levels"></div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="top-tabs">
+        <button class="tab active" data-tab="flashcards">Flash Cards</button>
+        <button class="tab" data-tab="kumon">Kumon Repetition</button>
+        <button class="tab" data-tab="listening">Listening Practice</button>
+        <button class="tab" data-tab="review">Review</button>
+      </header>
+
+      <section class="content">
+        <div class="meta-row">
+          <div id="statusText">Level 1 · Slide 1 / 50</div>
+          <div id="progressText">Progress: 2%</div>
+        </div>
+
+        <div id="slideHost"></div>
+
+        <div id="quizHost" class="hidden"></div>
+
+        <div class="controls">
+          <button id="prevBtn">Previous</button>
+          <button id="nextBtn">Next</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js?v=20260327-1731"></script>
+</body>
+</html>
