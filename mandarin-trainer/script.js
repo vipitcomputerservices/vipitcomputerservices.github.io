@@ -244,14 +244,17 @@ function getUniqueWordPool(level, count = SLIDES_PER_LEVEL) {
 
 function getLevelWords(level) {
   const pool = getUniqueWordPool(level, SLIDES_PER_LEVEL);
-  return pool.map(([en, zh, py], idx) => ({
-    en,
-    zh,
-    py,
-    image: getPhotoUrl(en, level * 100 + idx),
-    fallbackImage: makeWordImageSvgDataUri(en, zh),
-    ttsText: zh,
-  }));
+  return pool.map(([en, zh, py]) => {
+    const emojiImage = makeWordImageSvgDataUri(en, zh);
+    return {
+      en,
+      zh,
+      py,
+      image: emojiImage,
+      fallbackImage: emojiImage,
+      ttsText: zh,
+    };
+  });
 }
 
 function makeSentenceImageSvgDataUri(emoji, english) {
@@ -414,11 +417,14 @@ const KUMON_SLIDES = (() => {
 
 function getKumonTriplet(slideIndex) {
   const selected = KUMON_SLIDES[slideIndex % KUMON_SLIDES.length];
-  return selected.map((s, idx) => ({
-    ...s,
-    image: getPhotoUrl(s.english.replace(/\.$/, ''), 5000 + slideIndex * 10 + idx),
-    fallbackImage: makeSentenceImageSvgDataUri(s.emoji, s.english)
-  }));
+  return selected.map((s) => {
+    const emojiImage = makeSentenceImageSvgDataUri(s.emoji, s.english);
+    return {
+      ...s,
+      image: emojiImage,
+      fallbackImage: emojiImage
+    };
+  });
 }
 
 function renderGlossedChinese(gloss = []) {
