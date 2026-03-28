@@ -557,14 +557,19 @@ function renderReviewLaterControl() {
   wrap.className = 'review-later-wrap';
   wrap.innerHTML = `
     <label class="review-later-label" title="Add this slide to review after all 50 slides">
-      <input type="checkbox" id="reviewLaterCheck" ${isReviewLater(state.slideIndex) ? 'checked' : ''} />
+      <input type="checkbox" id="reviewLaterCheck" />
       Review Later
     </label>
   `;
   slideHost.appendChild(wrap);
 
   const box = document.getElementById('reviewLaterCheck');
-  box.onchange = () => setReviewLater(state.slideIndex, box.checked);
+  box.onchange = () => {
+    if (box.checked) {
+      setReviewLater(state.slideIndex, true);
+      box.checked = false;
+    }
+  };
 }
 
 function renderReviewTab() {
