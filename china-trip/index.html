@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>China Trip Planner</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=2" />
 </head>
 <body>
   <header class="hero">
@@ -14,6 +14,11 @@
     </div>
     <button id="print-btn" class="print-btn" type="button">🖨️ Print Itinerary</button>
   </header>
+
+  <section class="countdown-bubble" aria-live="polite">
+    <div class="countdown-title">Trip Countdown</div>
+    <div id="countdown-value" class="countdown-value">Loading…</div>
+  </section>
 
   <section class="card">
     <h2>Attendees</h2>
@@ -45,6 +50,6 @@
     <p id="total-cost"></p>
   </section>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>

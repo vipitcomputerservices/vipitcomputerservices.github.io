@@ -3,6 +3,29 @@ async function init() {
 
   document.getElementById('print-btn')?.addEventListener('click', () => window.print());
 
+  const firstFlightRaw = data?.tickets?.outbound?.[0]?.depart || '';
+  const firstFlightIso = firstFlightRaw
+    .replace(' EST', '-05:00')
+    .replace(' EDT', '-04:00')
+    .replace(' CST', '+08:00');
+  const firstFlightAt = new Date(firstFlightIso.replace(' ', 'T'));
+  const countdownEl = document.getElementById('countdown-value');
+  const renderCountdown = () => {
+    if (!countdownEl || Number.isNaN(firstFlightAt.getTime())) return;
+    const now = new Date();
+    const diffMs = firstFlightAt.getTime() - now.getTime();
+    if (diffMs <= 0) {
+      countdownEl.textContent = 'Departed';
+      return;
+    }
+    const totalHours = Math.floor(diffMs / (1000 * 60 * 60));
+    const days = Math.floor(totalHours / 24);
+    const hours = totalHours % 24;
+    countdownEl.textContent = `${days}d ${hours}h`;
+  };
+  renderCountdown();
+  setInterval(renderCountdown, 60 * 1000);
+
   const hero = document.querySelector('.hero');
   const heroImg = data.itinerary?.find((d) => d.attraction?.img)?.attraction?.img;
   if (hero && heroImg) {
@@ -12,6 +35,11 @@ async function init() {
   const toMin = (hhmm) => {
     const [h, m] = hhmm.split(':').map(Number);
     return h * 60 + m;
+  };
+  const parseClockMin = (text) => {
+    const m = String(text || '').match(/(\d{1,2}):(\d{2})/);
+    if (!m) return null;
+    return Number(m[1]) * 60 + Number(m[2]);
   };
   const toHHMM = (mins) => {
     const m = ((mins % 1440) + 1440) % 1440;
@@ -180,19 +208,106 @@ async function init() {
 
   const getBaseCity = (city) => city.replace(' (Departure Prep)', '').trim();
   const cityVisitCount = {};
-  const cityCoords = {
-    'Hong Kong': '22.3193~114.1694',
-    'Shenzhen': '22.5431~114.0579',
-    "Xi'an": '34.3416~108.9398',
-    'Chengdu': '30.5728~104.0668',
-    'Chongqing': '29.5630~106.5516',
-    'Yunnan': '25.0438~102.7100',
-    'Travel Day': '22.3193~114.1694'
+  const googleMapLink = (query) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+  const googleMapEmbed = (query) => `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
+
+  const referenceUrlByName = {
+    'Avenue of Stars': 'https://en.wikipedia.org/wiki/Avenue_of_Stars,_Hong_Kong',
+    'Avenue of Stars + TST Harbourfront': 'https://en.wikipedia.org/wiki/Avenue_of_Stars,_Hong_Kong',
+    'Victoria Peak': 'https://en.wikipedia.org/wiki/Victoria_Peak',
+    'Victoria Peak tram + skyline lookout': 'https://en.wikipedia.org/wiki/Victoria_Peak',
+    'Ngong Ping 360 + Tian Tan Buddha': 'https://en.wikipedia.org/wiki/Ngong_Ping_360',
+    'Shek O coastal stop after hike': 'https://en.wikipedia.org/wiki/Shek_O',
+    'Ping An Finance Center': 'https://en.wikipedia.org/wiki/Ping_An_Finance_Centre',
+    'Ping An Finance Center observatory': 'https://en.wikipedia.org/wiki/Ping_An_Finance_Centre',
+    'OCT Loft art district': 'https://en.wikivoyage.org/wiki/Shenzhen',
+    'Dameisha beach coast + viewpoints': 'https://en.wikivoyage.org/wiki/Shenzhen',
+    'Terracotta Army': 'https://en.wikipedia.org/wiki/Terracotta_Army',
+    'Terracotta Army museum': 'https://en.wikipedia.org/wiki/Terracotta_Army',
+    'Great Mosque historical district': 'https://en.wikipedia.org/wiki/Great_Mosque_of_Xi%27an',
+    'Shaanxi History Museum': 'https://en.wikipedia.org/wiki/Shaanxi_History_Museum',
+    'Chengdu Panda Base': 'https://en.wikipedia.org/wiki/Chengdu_Research_Base_of_Giant_Panda_Breeding',
+    'Chengdu Panda Base early entry': 'https://en.wikipedia.org/wiki/Chengdu_Research_Base_of_Giant_Panda_Breeding',
+    'Wenshu Monastery + old teahouses': 'https://en.wikivoyage.org/wiki/Chengdu',
+    'Dujiangyan irrigation scenic area': 'https://en.wikipedia.org/wiki/Dujiangyan',
+    'Hongya Cave': 'https://en.wikipedia.org/wiki/Hongyadong',
+    'Hongya Cave district': 'https://en.wikipedia.org/wiki/Hongyadong',
+    'Yangtze cable car + river crossing': 'https://en.wikipedia.org/wiki/Yangtze_River_Cableway',
+    'Liziba train-through-building viewpoint': 'https://en.wikipedia.org/wiki/Liziba_station',
+    'Stone Forest (Kunming)': 'https://en.wikipedia.org/wiki/Stone_Forest',
+    'Stone Forest karst area': 'https://en.wikipedia.org/wiki/Stone_Forest',
+    'Dali Ancient Town + Three Pagodas zone': 'https://en.wikipedia.org/wiki/Three_Pagodas',
+    'Black Dragon Pool': 'https://en.wikivoyage.org/wiki/Lijiang',
+    'Tiger Leaping Gorge scenic section': 'https://en.wikipedia.org/wiki/Tiger_Leaping_Gorge'
   };
-  const embedFromCity = (city) => {
-    const cp = cityCoords[city] || cityCoords['Hong Kong'];
-    const [lat, lng] = cp.split('~');
-    return `https://www.google.com/maps?q=${lat},${lng}&z=12&output=embed`;
+
+  const wikiTitleByAttraction = {
+    'Avenue of Stars': 'Avenue_of_Stars,_Hong_Kong',
+    'Avenue of Stars + TST Harbourfront': 'Avenue_of_Stars,_Hong_Kong',
+    'Victoria Peak': 'Victoria_Peak',
+    'Victoria Peak tram + skyline lookout': 'Victoria_Peak',
+    'Ngong Ping 360 + Tian Tan Buddha': 'Ngong_Ping_360',
+    'Shek O coastal stop after hike': 'Shek_O',
+    'Ping An Finance Center': 'Ping_An_Finance_Centre',
+    'Ping An Finance Center observatory': 'Ping_An_Finance_Centre',
+    'Terracotta Army': 'Terracotta_Army',
+    'Terracotta Army museum': 'Terracotta_Army',
+    'Great Mosque historical district': "Great_Mosque_of_Xi'an",
+    'Shaanxi History Museum': 'Shaanxi_History_Museum',
+    'Chengdu Panda Base': 'Chengdu_Research_Base_of_Giant_Panda_Breeding',
+    'Chengdu Panda Base early entry': 'Chengdu_Research_Base_of_Giant_Panda_Breeding',
+    'Dujiangyan irrigation scenic area': 'Dujiangyan',
+    'Hongya Cave': 'Hongyadong',
+    'Hongya Cave district': 'Hongyadong',
+    'Yangtze cable car + river crossing': 'Yangtze_River_Cableway',
+    'Liziba train-through-building viewpoint': 'Liziba_station',
+    'Stone Forest (Kunming)': 'Stone_Forest',
+    'Stone Forest karst area': 'Stone_Forest',
+    'Dali Ancient Town + Three Pagodas zone': 'Three_Pagodas',
+    'Tiger Leaping Gorge scenic section': 'Tiger_Leaping_Gorge'
+  };
+
+  const normalizeReferenceUrl = (name, fallback = '') => referenceUrlByName[name] || fallback || '';
+
+  const wikiThumbCache = {};
+  const fetchWikiThumb = async (title) => {
+    if (!title) return '';
+    if (wikiThumbCache[title] !== undefined) return wikiThumbCache[title];
+    try {
+      const endpoint = `https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&pithumbsize=1200&origin=*&titles=${encodeURIComponent(title)}`;
+      const res = await fetch(endpoint);
+      if (!res.ok) throw new Error('wiki thumb fetch failed');
+      const data = await res.json();
+      const pages = data?.query?.pages || {};
+      const page = Object.values(pages)[0] || {};
+      const src = page?.thumbnail?.source || '';
+      wikiThumbCache[title] = src;
+      return src;
+    } catch {
+      wikiThumbCache[title] = '';
+      return '';
+    }
+  };
+
+  const commonsThumbCache = {};
+  const fetchCommonsThumb = async (query) => {
+    if (!query) return '';
+    if (commonsThumbCache[query] !== undefined) return commonsThumbCache[query];
+    try {
+      const endpoint = `https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrnamespace=6&gsrlimit=1&gsrsearch=${encodeURIComponent(query)}&prop=imageinfo&iiprop=url&iiurlwidth=1200&format=json&origin=*`;
+      const res = await fetch(endpoint);
+      if (!res.ok) throw new Error('commons thumb fetch failed');
+      const data = await res.json();
+      const pages = data?.query?.pages || {};
+      const page = Object.values(pages)[0] || {};
+      const ii = page?.imageinfo?.[0] || {};
+      const src = ii?.thumburl || ii?.url || '';
+      commonsThumbCache[query] = src;
+      return src;
+    } catch {
+      commonsThumbCache[query] = '';
+      return '';
+    }
   };
 
   const cityDining = {
@@ -243,6 +358,22 @@ async function init() {
     });
   }
 
+  const attractionImageByName = {};
+  const attractionNames = new Set();
+  itinerary.forEach((d) => {
+    if (d.attraction?.name) attractionNames.add(d.attraction.name);
+  });
+  Object.values(optimizedByCity).flat().forEach((plan) => {
+    if (plan?.attraction?.name) attractionNames.add(plan.attraction.name);
+  });
+
+  await Promise.all([...attractionNames].map(async (name) => {
+    const title = wikiTitleByAttraction[name];
+    let img = title ? await fetchWikiThumb(title) : '';
+    if (!img) img = await fetchCommonsThumb(name);
+    if (img) attractionImageByName[name] = img;
+  }));
+
   let total = 0;
   const days = document.getElementById('days');
 
@@ -261,7 +392,9 @@ async function init() {
     const dayPlan = cityPlan.length ? cityPlan[visitIndex % cityPlan.length] : null;
 
     const attractionName = dayPlan?.attraction?.name || d.attraction?.name;
-    const attractionUrl = dayPlan?.attraction?.url || d.attraction?.url;
+    const attractionUrl = normalizeReferenceUrl(attractionName, dayPlan?.attraction?.url || d.attraction?.url);
+    const featuredImageBase = attractionImageByName[attractionName] || (attractionName === d.attraction?.name ? (d.attraction?.img || '') : '') || `https://picsum.photos/seed/${encodeURIComponent(attractionName || d.city)}/1200/800`;
+    const featuredImage = `${featuredImageBase}${featuredImageBase.includes('?') ? '&' : '?'}v=${idx + 1}`;
     const meta = attractionMeta[attractionName] || null;
 
     const attractionTime = '14:30';
@@ -276,65 +409,108 @@ async function init() {
       familyTicket = meta.ticketCADAdult * 2 + meta.ticketCADChild;
     }
 
-    let mealIdx = 0;
-    const rows = d.schedule.map((s) => {
+    const transitSuggestion = (origin, destination, isMajor = false, minutesHint = 35) => {
+      if (isMajor) {
+        const notes = (d.notes || '').toLowerCase();
+        if (notes.includes('flight')) return { mode: 'flight', modeLabel: 'Flight', minutes: 180, costCAD: 210, mapsMode: 'transit' };
+        if (notes.includes('bullet train') || notes.includes('hsr')) return { mode: 'train', modeLabel: 'Train', minutes: 240, costCAD: 95, mapsMode: 'transit' };
+        return { mode: 'train', modeLabel: 'Train', minutes: 240, costCAD: 95, mapsMode: 'transit' };
+      }
+      const mode = 'taxi';
+      const modeLabel = 'Ground transfer';
+      const costCAD = 12;
+      return { mode, modeLabel, minutes: minutesHint, costCAD, mapsMode: 'driving' };
+    };
+
+    const directionsLink = (origin, destination, mapsMode) => `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&travelmode=${mapsMode}`;
+    const directionsEmbed = (origin, destination, mapsMode) => `https://www.google.com/maps?saddr=${encodeURIComponent(origin)}&daddr=${encodeURIComponent(destination)}&dirflg=${mapsMode === 'driving' ? 'd' : 'r'}&output=embed`;
+
+    const baseSchedule = [...d.schedule];
+    const earliestEventMin = baseSchedule.map((x) => parseClockMin(x.time)).filter((x) => x !== null).sort((a, b) => a - b)[0] ?? toMin('07:30');
+    const wakeMin = Math.max(0, earliestEventMin - 60);
+    const sleepMin = wakeMin + (16 * 60); // 8h sleep window preserved
+    const wakeTime = toHHMM(wakeMin);
+    const sleepTime = toHHMM(sleepMin);
+    if (!baseSchedule.some((x) => x.type === 'wake')) {
+      baseSchedule.unshift({ time: wakeTime, plan: 'Wake up', type: 'wake', exactTime: true });
+    }
+    if (!baseSchedule.some((x) => x.type === 'sleep')) {
+      baseSchedule.push({ time: sleepTime, plan: 'Sleep (8h target)', type: 'sleep', exactTime: true });
+    }
+
+    const isMajorTravelEvent = (s) => {
+      if (s.type !== 'travel') return false;
+      const txt = `${s.plan || ''} ${d.notes || ''}`.toLowerCase();
+      return /flight|\bua\d+\b|bullet train|\bhsr\b|high-speed rail|high speed rail/.test(txt);
+    };
+
+    const filteredSchedule = baseSchedule.filter((s) => {
+      if (s.type === 'meal') return false;
+      if (s.type === 'travel') return isMajorTravelEvent(s);
+      return true;
+    });
+
+    const scheduleWithRanges = filteredSchedule.map((s, i) => {
+      if (s.exactTime || s.type === 'wake' || s.type === 'sleep') {
+        return { ...s, timeLabel: s.time };
+      }
+      const start = parseClockMin(s.time);
+      let end = null;
+      for (let j = i + 1; j < filteredSchedule.length; j += 1) {
+        const candidate = parseClockMin(filteredSchedule[j].time);
+        if (candidate !== null) {
+          end = candidate;
+          break;
+        }
+      }
+      if (start === null) return { ...s, timeLabel: s.time };
+      if (end === null || end <= start) end = start + 60;
+      const duration = (end - start) / 60;
+      const timeLabel = `${toHHMM(start)} - ${toHHMM(end)} (${duration.toFixed(1)} hours)`;
+      return { ...s, timeLabel };
+    });
+
+    const rows = scheduleWithRanges.map((s) => {
       let text = s.plan;
       let itemUrl = '';
       let mapTarget = `${d.city} ${d.stayArea || ''}`;
-      let mapContext = '';
+      const origin = d.stayArea || baseCity;
+      const rowParts = [];
 
       if (!isTravelDay && s.type === 'activity' && s.time === '09:00' && dayPlan?.walk) {
         text = `Scenic walk / sightseeing: ${dayPlan.walk}`;
         mapTarget = `${dayPlan.walk}, ${baseCity}`;
-        mapContext = 'morning walk';
       }
 
       if (!isTravelDay && s.type === 'activity' && s.time === '14:30' && dayPlan?.attraction?.name) {
         text = `Featured attraction: ${dayPlan.attraction.name}${leaveHotel ? ` (leave stay area by ${leaveHotel})` : ''}`;
-        itemUrl = dayPlan.attraction.url || '';
+        itemUrl = normalizeReferenceUrl(dayPlan.attraction.name, dayPlan.attraction.url || '');
         mapTarget = `${dayPlan.attraction.name}, ${baseCity}`;
-        mapContext = 'main attraction';
-      }
-
-      if (!isTravelDay && s.type === 'meal') {
-        const picks = cityDining[baseCity] || [];
-        const pick = picks[mealIdx % Math.max(1, picks.length)] || null;
-        if (pick) {
-          text = `${s.time === '18:30' && dayPlan?.evening ? `Dinner + evening plan: ${dayPlan.evening}. ` : ''}Meal suggestion: ${pick.name}${s.time === '18:30' && leaveAttraction ? ` (leave attraction by ${leaveAttraction})` : ''}`;
-          itemUrl = pick.url || '';
-          if (s.time < '11:00') {
-            mapTarget = `breakfast near ${d.stayArea || baseCity}, ${baseCity}`;
-            mapContext = 'breakfast area';
-          } else if (s.time < '16:00') {
-            mapTarget = `lunch near ${attractionName || baseCity}, ${baseCity}`;
-            mapContext = 'lunch area';
-          } else {
-            mapTarget = `${pick.name}, ${baseCity}`;
-            mapContext = dayPlan?.evening ? `dinner near ${dayPlan.evening}` : 'dinner area';
-          }
-          mealIdx += 1;
-        }
       }
 
       if (s.type === 'rest') {
         text = `Rest stop near suggested stay area: ${d.stayArea || baseCity}`;
-        mapTarget = `hotel near ${d.stayArea || baseCity}`;
-        mapContext = 'rest stop';
+        mapTarget = `${d.stayArea || baseCity}`;
       }
 
-      const mapQueryRow = encodeURIComponent(`${mapTarget} ${mapContext}`.trim());
-      const rowMapLink = `https://www.google.com/maps/search/?api=1&query=${mapQueryRow}`;
-      const rowMapEmbed = `https://www.google.com/maps?q=${mapQueryRow}&z=13&output=embed`;
-      const rowMapEmbedAlt = embedFromCity(baseCity);
+      const isMajorTravel = isMajorTravelEvent(s);
+
+      const rowMapLink = googleMapLink(mapTarget);
+      const rowMapEmbed = googleMapEmbed(mapTarget);
       const linkHtml = itemUrl ? `<a href='${itemUrl}' target='_blank' rel='noreferrer'>Website</a>` : '';
-      const mapToggleHtml = `<a href='${rowMapLink}' class='js-map-toggle' data-embed='${rowMapEmbed}' data-embed-alt='${rowMapEmbedAlt}' data-open-label='Map' data-close-label='Hide map' target='_blank' rel='noreferrer'>Map</a><div class='map-frame js-map-frame'></div>`;
+      const mapToggleHtml = (s.type === 'wake' || s.type === 'sleep')
+        ? ''
+        : isMajorTravel
+          ? `<a href='${rowMapLink}' class='js-map-toggle' data-embed='${rowMapEmbed}' data-open-label='Map' data-close-label='Hide map' target='_blank' rel='noreferrer'>Hide map</a><div class='map-frame js-map-frame' style='display:block'><iframe loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="${rowMapEmbed}" allowfullscreen></iframe></div>`
+          : `<a href='${rowMapLink}' class='js-map-toggle' data-embed='${rowMapEmbed}' data-open-label='Map' data-close-label='Hide map' target='_blank' rel='noreferrer'>Map</a><div class='map-frame js-map-frame'></div>`;
 
-      const rowClass = s.type === 'meal' ? 'row-meal' : s.type === 'rest' ? 'row-rest' : s.type === 'activity' ? 'row-activity' : '';
-      const rowHasBg = rowClass === 'row-activity' && !!(d.attraction?.img);
+      const rowClass = s.type === 'wake' ? 'row-wake' : s.type === 'sleep' ? 'row-sleep' : s.type === 'meal' ? 'row-meal' : s.type === 'rest' ? 'row-rest' : s.type === 'activity' ? 'row-activity' : s.type === 'travel' ? 'row-major-travel' : '';
+      const rowHasBg = rowClass === 'row-activity' && !!featuredImage;
       const rowClassFull = `${rowClass}${rowHasBg ? ' has-bg' : ''}`.trim();
-      const rowStyle = rowHasBg ? ` style="--row-bg:url('${d.attraction.img}')"` : '';
+      const rowStyle = rowHasBg ? ` style="--row-bg:url('${featuredImage}')"` : '';
 
-      return `<tr class='${rowClassFull}'${rowStyle}><td>${s.time}</td><td>${text}<div class='plan-links'>${linkHtml}${mapToggleHtml}</div></td><td>${s.type}</td></tr>`;
+      rowParts.push(`<tr class='${rowClassFull}'${rowStyle}><td>${s.timeLabel || s.time}</td><td>${text}<div class='plan-links'>${linkHtml}${mapToggleHtml}</div></td><td>${isMajorTravel ? 'major travel' : s.type}</td></tr>`);
+      return rowParts.join('');
     }).join('');
 
     const planningHtml = meta
@@ -346,20 +522,19 @@ async function init() {
         </div>`
       : '';
 
-    const mapQuery = encodeURIComponent(`${attractionName || d.city}, ${baseCity || d.city}`);
-    const mapLink = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
-    const mapEmbed = `https://www.google.com/maps?q=${mapQuery}&z=12&output=embed`;
-    const mapEmbedAlt = embedFromCity(baseCity);
+    const mapTargetDay = `${attractionName || d.city}, ${baseCity || d.city}`;
+    const mapLink = googleMapLink(mapTargetDay);
+    const mapEmbed = googleMapEmbed(mapTargetDay);
 
     const mapHtml = `
       <div class='map-wrap'>
-        <a href='${mapLink}' class='map-link js-map-toggle' data-embed='${mapEmbed}' data-embed-alt='${mapEmbedAlt}' data-open-label='🗺️ View map for this day' data-close-label='🗺️ Hide map for this day' target='_blank' rel='noreferrer'>🗺️ View map for this day</a>
+        <a href='${mapLink}' class='map-link js-map-toggle' data-embed='${mapEmbed}' data-open-label='🗺️ View map for this day' data-close-label='🗺️ Hide map for this day' target='_blank' rel='noreferrer'>🗺️ View map for this day</a>
         <div class='map-frame js-map-frame'></div>
       </div>
     `;
 
     const attractionHtml = attractionName && !isTravelDay
-      ? `<div class='attraction'><img src='${d.attraction?.img || ''}' alt='${attractionName}' /><div><p><strong>Featured attraction:</strong> ${attractionName}</p><p><a href='${attractionUrl}' target='_blank' rel='noreferrer'>Official/reference link</a></p>${planningHtml}${d.notes ? `<p><strong>Transit notes:</strong> ${d.notes}</p>` : ''}${mapHtml}</div></div>`
+      ? `<div class='attraction'><img src='${featuredImage}' alt='${attractionName}' onerror="this.onerror=null;this.src='https://picsum.photos/seed/${encodeURIComponent(attractionName || d.city)}/1200/800';" /><div><p><strong>Featured attraction:</strong> ${attractionName}</p><p><a href='${attractionUrl}' target='_blank' rel='noreferrer'>Official/reference link</a></p>${planningHtml}${d.notes ? `<p><strong>Transit notes:</strong> ${d.notes}</p>` : ''}${mapHtml}</div></div>`
       : `${d.notes ? `<p><strong>Notes:</strong> ${d.notes}</p>` : ''}${mapHtml}`;
 
     sec.innerHTML = `<div class='dayhead'><div><h3>Day ${idx + 1} - ${d.date} (${d.weekday})</h3><div class='meta'>City: <strong>${d.city}</strong><br><strong>Suggested stay area:</strong> ${d.stayArea || 'TBD'}</div></div><div class='cost'>Estimated daily cost: CAD $${d.estimatedCostCAD.toLocaleString()}</div></div><table class='schedule'><thead><tr><th style='width:120px'>Time</th><th>Plan</th><th style='width:120px'>Type</th></tr></thead><tbody>${rows}</tbody></table>${attractionHtml}`;
@@ -367,21 +542,9 @@ async function init() {
     days.appendChild(sec);
   });
 
-  const mountMapFrame = (container, primary, alt, href) => {
+  const mountMapFrame = (container, embedUrl, href) => {
     const token = Date.now();
-    container.innerHTML = `<iframe loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="${primary}${primary.includes('?') ? '&' : '?'}_t=${token}" allowfullscreen></iframe>`;
-    const iframe = container.querySelector('iframe');
-
-    const fallback = setTimeout(() => {
-      if (!iframe.dataset.loaded && alt) {
-        iframe.src = `${alt}${alt.includes('?') ? '&' : '?'}_t=${Date.now()}`;
-      }
-    }, 2500);
-
-    iframe.addEventListener('load', () => {
-      iframe.dataset.loaded = '1';
-      clearTimeout(fallback);
-    });
+    container.innerHTML = `<iframe loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="${embedUrl}${embedUrl.includes('?') ? '&' : '?'}_t=${token}" allowfullscreen></iframe><div style="padding:8px 10px;font-size:12px;border-top:1px solid #dce3ef"><a href="${href}" target="_blank" rel="noreferrer">Open in Google Maps</a></div>`;
   };
 
   document.querySelectorAll('.js-map-toggle').forEach((link) => {
@@ -389,7 +552,6 @@ async function init() {
       e.preventDefault();
       const frame = link.parentElement.querySelector('.js-map-frame');
       const embed = link.dataset.embed;
-      const embedAlt = link.dataset.embedAlt;
       const href = link.getAttribute('href');
       const expanded = frame.style.display === 'block';
 
@@ -402,7 +564,7 @@ async function init() {
         link.textContent = openLabel;
       } else {
         frame.style.display = 'block';
-        mountMapFrame(frame, embed, embedAlt, href);
+        mountMapFrame(frame, embed, href);
         link.textContent = closeLabel;
       }
     });
